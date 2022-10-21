@@ -1,38 +1,48 @@
-import './App.css';
+import Comic from './components/comic';
 import {useState, useEffect} from "react"
+import "./App.css"
 
 function App() {
-  const [appData, setAppData] = useState()
 
-  useEffect(() => {
+  const [comicData, setComicData] = useState()
+  const [comicNumber, setComicNumber] = useState(1)
 
-    fetch("/api/xkcd/1").then(
-      response => {
-        return response.json()
-      }
-    ).then(
-      data => {
-        setAppData(data)
-      }
-    )
+    useEffect(() => {
+        fetch(`/api/xkcd/${comicNumber}`).then(
+            response => {
+                return response.json()
+            }
+        ).then(
+            data => {
+                setComicData(data)
+            }
+        )
+    }, [comicNumber])
 
-    // fetch("/xkcd/info.0.json").then(response => 
-    //   response.json().then(data => ({
-    //       data: data,
-    //       status: response.status
-    //   })
-    // ).then(res => {
-    //     setAppData(res.data)
-    //     console.log(res.data.img)
-    //     console.log(res.status, res.data.title)
-    // }));
-    
-  }, [])
+
+  function decrComicNumber() {
+    setComicNumber((prevComicNumber) => prevComicNumber-1)
+  }
+
+  function incrComicNumber() {
+    setComicNumber((prevComicNumber) => prevComicNumber+1)
+  }
+
 
   return (
     <div className="App">
-      <img src={appData ? appData.img: "" } alt="comic strip"></img>
-      <h1>hi</h1>
+      <h1>XKCD Comic Strips</h1>
+      <button onClick={decrComicNumber}>Previous</button>
+      <button onClick={incrComicNumber}>Next</button>
+      {comicData && 
+        <Comic 
+          img={comicData.img}
+          transcript={comicData.transcript}
+          year={comicData.year}
+          month={comicData.month}
+          day={comicData.day}
+        />
+      }
     </div>
   );
 }
