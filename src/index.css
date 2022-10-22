@@ -63,17 +63,17 @@ button:active {
  background-color: white;
  border-radius: 20px;
  margin: auto;
-}
-.comic-img {
-  width: 100%
+ border: 2px solid black;
 }
 
-@media only screen and (max-width: 768px){
-  /* .comic-img {
-    width:100%;
-    height:auto;
-  } */
+.comic-img {
+  width: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+/* @media only screen and (max-width: 768px){
   .comic-box {
     width: 100%;
   }
-}
+} */
