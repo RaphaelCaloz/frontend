@@ -115,7 +115,7 @@ export default function App() {
           </div>
         }
         { comicData && 
-          <Comic 
+          <Comic
             img={comicData.img}
             transcript={comicData.transcript}
             year={comicData.year}

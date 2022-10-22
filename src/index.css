@@ -57,3 +57,23 @@ button:active {
   margin-right: 40px;
   margin-left: 40px;
 }
+
+.comic-box {
+ width:768px;
+ background-color: white;
+ border-radius: 20px;
+ margin: auto;
+}
+.comic-img {
+  width: 100%
+}
+
+@media only screen and (max-width: 768px){
+  /* .comic-img {
+    width:100%;
+    height:auto;
+  } */
+  .comic-box {
+    width: 100%;
+  }
+}
