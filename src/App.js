@@ -1,6 +1,6 @@
 import Comic from './components/Comic'
 import SmartButton from './components/SmartButton'
-import {useState, useEffect} from "react"
+import React, {useState, useEffect} from "react"
 import "./App.css"
 
 export default function App() {
@@ -48,21 +48,6 @@ export default function App() {
           setMaxComicId(data.maxComicId)
         }
     )
-
-    // // Fetch data of the comic that is displayed when the user
-    // // first lands on our website
-    // fetch(`/api/xkcd/${comicNumber ? comicNumber:""}`).then(
-    //     response => {
-    //       return response.json()
-    //     }
-    // ).then(
-    //     data => {
-    //       setComicData(data)
-    //       if (typeof comicNumber === "undefined") {
-    //         setComicNumber(comicData.num)
-    //       }
-    //     }
-    // )
   }, [])
 
   // Effect that is used to fetch the first comic once maxComicId has been set
@@ -107,49 +92,38 @@ export default function App() {
 
 
   function decrComicNumber() {
-    setComicNumber((prevComicNumber) => prevComicNumber-1) // TODO: set to change comicData state
+    setComicNumber((prevComicNumber) => prevComicNumber-1)
   }
 
   function incrComicNumber() {
-    setComicNumber((prevComicNumber) => prevComicNumber+1) // TODO: set to change comicData state
+    setComicNumber((prevComicNumber) => prevComicNumber+1)
   }
 
   function randomizeComicNumber() {
     setComicNumber(1+Math.floor(Math.random()*(maxComicId-1)))
   }
 
-  // function urlHasComicId(url) {
-  //     // Tests if what comes after the origin part of the URL
-  //     // is a valid comicId
-  //     const comicIdStart = document.URL.lastIndexOf('/')
-  //     const urlEnd = document.URL.slice(comicIdStart).replace('/','')
-  //     if (!isNaN(+urlEnd)) {
-  //       return +urlEnd
-  //     } else {
-  //       return "max"
-  //     }
-  // }
-
-  // TODO: Hide buttons until maxComicId state is not undefined
   return (
     <div className="App">
-      <h1>XKCD Comic Strips</h1>
-      { comicData &&
-        <div className="button-box">
-          <SmartButton key={1} processClick={decrComicNumber} enabled={comicNumber > 1} text="Previous"/>
-          <SmartButton key={2} processClick={randomizeComicNumber} enabled={true} text="Random"/>
-          <SmartButton key={3} processClick={incrComicNumber} enabled={comicNumber < maxComicId} text="Next"/>
-        </div>
-      }
-      { comicData && 
-        <Comic 
-          img={comicData.img}
-          transcript={comicData.transcript}
-          year={comicData.year}
-          month={comicData.month}
-          day={comicData.day}
-        />
-      }
+      <header className="App-header">
+        <h1>XKCD Comics</h1>
+        { comicData &&
+          <div className="button-box">
+            <SmartButton key={1} processClick={decrComicNumber} enabled={comicNumber > 1} text="Previous"/>
+            <SmartButton key={2} processClick={randomizeComicNumber} enabled={true} text="Random"/>
+            <SmartButton key={3} processClick={incrComicNumber} enabled={comicNumber < maxComicId} text="Next"/>
+          </div>
+        }
+        { comicData && 
+          <Comic 
+            img={comicData.img}
+            transcript={comicData.transcript}
+            year={comicData.year}
+            month={comicData.month}
+            day={comicData.day}
+          />
+        }
+      </header>
     </div>
   );
 }
