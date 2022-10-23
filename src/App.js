@@ -27,14 +27,13 @@ export default function App() {
   //const [firstRenderBool, setFirstRenderBool] = useState()
   const [maxComicId, setMaxComicId] = useState()
 
-  console.log(`App rendered. comicNumber: ${comicNumber}, maxComicId: ${maxComicId}`)
+  //console.log(`App rendered. comicNumber: ${comicNumber}, maxComicId: ${maxComicId}`)
 
 
   // Effect that runs only on first render to get the max comic ID
   useEffect(() => {
-    
 
-    console.log("useEffect: FIRST RENDER.")
+    //console.log("useEffect: FIRST RENDER.")
     // Set max comic ID by going through our backend API
     fetch("/api/xkcd/maxComicId").then(
       response => {
@@ -56,9 +55,9 @@ export default function App() {
       const comicIdStart = document.URL.lastIndexOf('/')
       const urlEnd = document.URL.slice(comicIdStart).replace('/','')
       const extractedId = +urlEnd
-      console.log("comicIdStart: ", comicIdStart)
-      console.log("urlEnd: ", urlEnd)
-      console.log("extractedId: ", extractedId)
+      // console.log("comicIdStart: ", comicIdStart)
+      // console.log("urlEnd: ", urlEnd)
+      // console.log("extractedId: ", extractedId)
       if (!isNaN(extractedId) && extractedId >= 1 && extractedId <= maxComicId) {
         return extractedId
       } else {
@@ -66,7 +65,7 @@ export default function App() {
       }
     }
     // Trigger the last useEffect function to fetch and display the comic
-    console.log("extracted comicId: ", extractComicIdFromUrl())
+    // console.log("extracted comicId: ", extractComicIdFromUrl())
     setComicNumber(extractComicIdFromUrl())
 
   }, [maxComicId])
@@ -75,9 +74,9 @@ export default function App() {
   // It is used to update the page when buttons are pressed
   useEffect(() => {
     
-    console.log('useEffect: pre-fetch comicData')
+    // console.log('useEffect: pre-fetch comicData')
     if (typeof comicNumber !== 'undefined') {  // If initial API calls are complete
-      console.log('useEffect: fetch comicData')
+      // console.log('useEffect: fetch comicData')
       fetch(`/api/xkcd/${comicNumber}`).then(
           response => {
             return response.json()
@@ -121,6 +120,7 @@ export default function App() {
             year={comicData.year}
             month={comicData.month}
             day={comicData.day}
+            comicNumber={comicNumber}
           />
         }
       </header>

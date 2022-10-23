@@ -4,9 +4,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url('./doodle-bg.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+  /*background-size: cover;*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: center center;*/
 }
 
 code {
@@ -28,6 +28,7 @@ button {
   border-radius: 10px;
   font-family: 'Shadows Into Light';
   font-size: 22px;
+  color: black;
 }
 
 button:hover {
@@ -54,26 +55,41 @@ button:active {
 }
 
 .transcript {
-  margin-right: 40px;
-  margin-left: 40px;
+  /* margin-right: 40px;
+  margin-left: 40px; */
+  padding-left:40px;
+  padding-right: 40px;
+  text-align: justify;
 }
 
 .comic-box {
- width:768px;
+ width:722px;
+ padding-left: 10px;
+ padding-right:10px;
+ padding-top:10px;
  background-color: white;
  border-radius: 20px;
  margin: auto;
- border: 2px solid black;
+ margin-bottom: 20px;
+ border: 3px solid black;
 }
 
 .comic-img {
-  width: 100%;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  max-width:722px;
+  /*border-top-left-radius: 20px;
+  border-top-right-radius: 20px;*/
 }
 
-/* @media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px){
   .comic-box {
     width: 100%;
+    padding: 0px;
+    border: none;
+    margin: auto;
   }
-} */
+  .comic-img {
+    border-radius: 0px;
+    width: 100%;
+    margin:auto;
+  }
+}
